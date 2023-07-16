@@ -12,10 +12,12 @@
  * @package         Simple_Graphql_Query
  */
 
-// Your code starts here.
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
+require_once __DIR__ . '/includes/class-simplegqladmin.php';
 
+$settings = new SimpleGQLAdmin();
 
-require_once(__DIR__ . '/includes/settings.php');
-
-?>
