@@ -1,6 +1,6 @@
 <?php
 /**
- * Setting Class file.
+ * option Class file.
  *
  * @package Simple_Graphql_Query
  */
@@ -25,7 +25,7 @@ class SimpleGQLAdmin {
 			'Simple GraphQL Query Options',       // page_title.
 			'Simple GQL',                         // menu_title.
 			'manage_options',                     // capability.
-			'simple-gql-settings',                // menu_slug.
+			'simple-gql-options',                // menu_slug.
 			array( $this, 'simple_gql_callback' ) // callback.
 		);
 	}
@@ -34,16 +34,12 @@ class SimpleGQLAdmin {
 	 * Menu - Callback page.
 	 */
 	public function simple_gql_callback() {
+		// Only admin can edit.
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( 'You do not have sufficient permissions to access this page.' );
 		}
-		// Only admin can edit.
-		
-		// $apitoken = 'zaraza';
-		// include 'class-simplegqladmin.html';
-
 		echo '<form action="options.php" method="post">';
-		do_settings_sections( 'simple-gql-settings' );
+		do_settings_sections( 'simple-gql-options' );
 		submit_button( 'Grabar' );
 		echo '</form>';
 
@@ -55,13 +51,13 @@ class SimpleGQLAdmin {
 	public function simple_gql_options() {
 
 		/**
-		 *  Settings Section.
+		 *  options Section.
 		 */
 		add_settings_section(
 			'simple-gql-section',                          // ID
-			'Simple GraphQL Settings',                     // Title
+			'Simple GraphQL options',                     // Title
 			array( $this, 'simple_gql_section_callback' ), // Section callback
-			'simple-gql-settings',                         // Page
+			'simple-gql-options',                         // Page
 			array()                                        // Args
 		);
 
@@ -80,7 +76,7 @@ class SimpleGQLAdmin {
 			'simple-gpl-apikey',              // ID
 			'GraphQL API Key',                // Title
 			array( $this, 'input_callback' ), // Callback
-			'simple-gql-settings',            // Page
+			'simple-gql-options',            // Page
 			'simple-gql-section',             // Section
 			array(                            // Args
 				'label_for'   => 'simple-gpl-apikey',
@@ -104,7 +100,7 @@ class SimpleGQLAdmin {
 			'simple-gpl-apiendpoint',         // ID
 			'GraphQL API Endpoint',           // Title
 			array( $this, 'input_callback' ), // Callback
-			'simple-gql-settings',            // Page
+			'simple-gql-options',            // Page
 			'simple-gql-section',             // Section
 			array(                            // Args
 				'label_for'   => 'simple-gpl-apiendpoint',
