@@ -59,7 +59,7 @@ function sgql_query($query) {
 	if ( 200 === $request->status_code ) {
 		return array(
 			'successful' => true,
-			'data'       => json_decode($request->body, true),
+			'data'       => json_decode($request->body, true)['data'],
 		);
 	} else {
 		return array(
